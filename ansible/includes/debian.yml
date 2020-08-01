@@ -15,3 +15,9 @@
     name: dnsmasq
     enabled: no
     state: stopped
+
+- name: Enable time service
+  service:
+    name: "{{ shakenfist_service_time | default('chrony') }}"
+    enabled: yes
+    state: started

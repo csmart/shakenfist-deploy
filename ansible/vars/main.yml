@@ -3,6 +3,7 @@
 shakenfist_deps:
   - arping
   - bridge-utils
+  - chrony
   - cpu-checker
   - dnsmasq
   - dnsutils
@@ -18,3 +19,5 @@ shakenfist_deps:
   - python3-libvirt
   - qemu-kvm
   - unzip
+
+shakenfist_service_time: chrony
