@@ -35,3 +35,16 @@
     name: dnsmasq
     enabled: no
     state: stopped
+
+- name: Configure KSM (kernel same-page merging)
+  lineinfile:
+    path: /etc/default/qemu-kvm
+    regexp: '^KSM_ENABLED='
+    line: 'KSM_ENABLED={{ shakenfist_ksm | default("AUTO") }}'
+  register: result_ksmconf
+
+- name: Restart KVM service if KSM setting changed
+  service:
+    name: qemu-kvm
+    state: restarted
+  when: result_ksmconf.changed
